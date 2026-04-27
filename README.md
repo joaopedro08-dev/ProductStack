@@ -105,3 +105,6 @@ DB_PASS=
   "price": 120.00
 }
 ```
+
+> **Note:**
+> This project is intended to be run locally. Just open `index.html` in your browser—no hosting required. The interface is intuitive and self-explanatory, so you can start managing products right away!
