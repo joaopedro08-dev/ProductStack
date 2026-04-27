@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductStack</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script defer type="module" src="script.js"></script>
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-rounded">inventory_2</span>
+                </div>
+                <span class="logo-text">ProductStack</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <span class="nav-label">Menu</span>
+                <a href="#" class="nav-item active">
+                    <span class="material-symbols-rounded nav-icon">grid_view</span>
+                    <span>Produtos</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-rounded nav-icon">bar_chart</span>
+                    <span>Relatórios</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-rounded nav-icon">category</span>
+                    <span>Categorias</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-rounded nav-icon">settings</span>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar">U</div>
+                    <div class="user-info">
+                        <span class="user-name">Usuário</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-home">Dashboard</span>
+                        <span class="material-symbols-rounded breadcrumb-sep">chevron_right</span>
+                        <span class="breadcrumb-current">Produtos</span>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <button id="change-theme" class="icon-btn" title="Alternar tema">
+                        <span class="material-symbols-rounded theme-icon">sunny</span>
+                    </button>
+                    <div class="topbar-divider"></div>
+                    <button class="icon-btn" title="Notificações">
+                        <span class="material-symbols-rounded">notifications</span>
+                        <span class="notif-badge"></span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="page-content">
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--blue">
+                            <span class="material-symbols-rounded">inventory_2</span>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-total">—</span>
+                            <span class="stat-label">Total de Produtos</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--green">
+                            <span class="material-symbols-rounded">category</span>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-categories">—</span>
+                            <span class="stat-label">Categorias</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--amber">
+                            <span class="material-symbols-rounded">sell</span>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-avg">—</span>
+                            <span class="stat-label">Preço Médio</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--purple">
+                            <span class="material-symbols-rounded">storefront</span>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-brands">—</span>
+                            <span class="stat-label">Marcas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-card-header">
+                        <div>
+                            <h2 class="table-card-title">Produtos</h2>
+                            <p class="table-card-desc">Gerencie seu catálogo de produtos</p>
+                        </div>
+                        <div class="table-card-actions">
+                            <div class="search-wrapper">
+                                <span class="material-symbols-rounded search-icon-inner">search</span>
+                                <input type="text" id="search-input" class="search-input"
+                                    placeholder="Buscar produtos...">
+                            </div>
+                            <button class="btn-primary" id="add-product-button">
+                                <span class="material-symbols-rounded">add</span>
+                                Novo Produto
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Marca</th>
+                                    <th>Categoria</th>
+                                    <th>Preço</th>
+                                    <th>Criado em</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="product-table-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-card-footer">
+                        <span class="footer-count" id="footer-count"></span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="modal-product" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title">Adicionar Produto</h2>
+                    <p class="modal-subtitle">Preencha os dados do produto abaixo</p>
+                </div>
+                <button class="modal-close" id="close-modal-product" title="Fechar">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <form id="form-product" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto</label>
+                        <input type="text" id="product-name" name="name" required autocomplete="off"
+                            placeholder="Ex: Notebook Pro" />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-brand">Marca</label>
+                        <input type="text" id="product-brand" name="brand" required autocomplete="off"
+                            placeholder="Ex: Apple" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-category">Categoria</label>
+                        <input type="text" id="product-category" name="category" required autocomplete="off"
+                            placeholder="Ex: Eletrônicos" />
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Preço (R$)</label>
+                        <input type="number" id="product-price" name="price" required min="0" step="0.01"
+                            placeholder="0,00" />
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-ghost" id="cancel-modal-btn">Cancelar</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-symbols-rounded">save</span>
+                        Salvar Produto
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+</body>
+</html>
